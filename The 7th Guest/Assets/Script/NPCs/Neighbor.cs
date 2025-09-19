@@ -9,28 +9,41 @@ public class Neighbor : MonoBehaviour
     private Drag rightNeighbor;
     private Transform currentSnapPoint;
     private int snapPointLoc;
+    private int leftSnapPoint;
+    private int rightSnapPoint;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        SelfPos();
+        FindLeftNeighbor();
+        FindRightNeighbor();
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void SelfPos()
     {
         currentSnapPoint = snap.currentSnapPoint[snap.draggableObj[0]];
         snapPointLoc = snap.snapPoints.IndexOf(currentSnapPoint);
-        Debug.Log(snapPointLoc);
     }
 
     private void FindLeftNeighbor()
     {
-
+        leftSnapPoint = snapPointLoc + 1;
+        if (leftSnapPoint >= snap.snapPoints.Count)
+        {
+            leftSnapPoint = 0;
+        }
+        Debug.Log(leftSnapPoint);
+        leftNeighbor = snap.snapOccupancy[snap.snapPoints[leftSnapPoint]];
     }
 
     private void FindRightNeighbor()
     {
-
+        rightSnapPoint = snapPointLoc - 1;
+        if (rightSnapPoint < 0)
+        {
+            rightSnapPoint = snap.snapPoints.Count - 1;
+        }
+        Debug.Log(rightSnapPoint);
+        rightNeighbor = snap.snapOccupancy[snap.snapPoints[rightSnapPoint]];
     }
 }
