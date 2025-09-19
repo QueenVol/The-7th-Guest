@@ -12,11 +12,6 @@ public class Drag : MonoBehaviour
     private Vector3 mouseDragStartPos;
     private Vector3 spriteDragStartPos;
 
-    private void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
         isDrag = true;

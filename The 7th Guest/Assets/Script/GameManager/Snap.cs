@@ -6,7 +6,7 @@ public class Snap : MonoBehaviour
 {
     public List<Transform> snapPoints;
     public List<Drag> draggableObj;
-    public float snapRange = 0.5f;
+    public float snapRange = 1f;
 
     private void Start()
     {

@@ -1612,13 +1612,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapPoints:
   - {fileID: 930951646}
-  - {fileID: 1553908798}
   - {fileID: 470525239}
   - {fileID: 207985788}
   - {fileID: 858936004}
-  - {fileID: 1839164798}
-  - {fileID: 1200291479}
+  - {fileID: 1553908798}
   - {fileID: 1634451568}
+  - {fileID: 1200291479}
+  - {fileID: 1839164798}
   draggableObj:
   - {fileID: 1995194361}
   - {fileID: 1939011194}
