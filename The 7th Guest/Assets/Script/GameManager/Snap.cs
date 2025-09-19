@@ -10,7 +10,7 @@ public class Snap : MonoBehaviour
     public List<Drag> draggableObj;
     public float snapRange = 1f;
 
-    private Dictionary<Transform, Drag> snapOccupancy = new Dictionary<Transform, Drag>();
+    public Dictionary<Transform, Drag> snapOccupancy = new Dictionary<Transform, Drag>();
 
     private void Start()
     {
