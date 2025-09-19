@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Snap : MonoBehaviour
 {
+    //https://www.youtube.com/watch?v=axW46wCJxZ0
+
     public List<Transform> snapPoints;
     public List<Drag> draggableObj;
     public float snapRange = 1f;
 
+    private Dictionary<Transform, Drag> snapOccupancy = new Dictionary<Transform, Drag>();
+
     private void Start()
     {
+        foreach (Transform snap in snapPoints)
+        {
+            snapOccupancy[snap] = null; 
+        }
+
         foreach (Drag drag in draggableObj)
         {
             drag.dragEndedCallback = OnDragEnded;
@@ -33,7 +42,26 @@ public class Snap : MonoBehaviour
 
         if(closestSnapPoint != null && closestDistance <= snapRange)
         {
+            if (snapOccupancy[closestSnapPoint] != null)
+            {
+                Drag other = snapOccupancy[closestSnapPoint];
+                other.transform.position = drag.spriteDragStartPos;
+                snapOccupancy[closestSnapPoint] = drag;
+            }
+            else
+            {
+                snapOccupancy[closestSnapPoint] = drag;
+            }
+
             drag.transform.localPosition = closestSnapPoint.localPosition;
+        }
+        else
+        {
+            foreach (var key in snapOccupancy.Keys)
+            {
+                if (snapOccupancy[key] == drag)
+                    snapOccupancy[key] = null;
+            }
         }
     }
 }

@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Drag : MonoBehaviour
 {
+    //https://www.youtube.com/watch?v=axW46wCJxZ0
+
     public delegate void DragEndedDelegate(Drag draggableObj);
 
     public DragEndedDelegate dragEndedCallback;
 
     private bool isDrag = false;
     private Vector3 mouseDragStartPos;
-    private Vector3 spriteDragStartPos;
+    public Vector3 spriteDragStartPos;
+
+    private Vector3 pos;
+
+    private void Update()
+    {
+        pos = transform.position;
+        pos.z = 0f;
+        transform.position = pos;
+    }
 
     private void OnMouseDown()
     {

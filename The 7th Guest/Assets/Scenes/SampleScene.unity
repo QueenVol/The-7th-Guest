@@ -1628,7 +1628,7 @@ MonoBehaviour:
   - {fileID: 690375288}
   - {fileID: 1477971505}
   - {fileID: 1617183424}
-  snapRange: 1
+  snapRange: 1.5
 --- !u!1001 &1179028773
 PrefabInstance:
   m_ObjectHideFlags: 0
