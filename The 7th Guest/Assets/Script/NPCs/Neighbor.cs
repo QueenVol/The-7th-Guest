@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Neighbor : MonoBehaviour
 {
-    private Snap snap;
-    private Drag left;
-    private Drag right;
+    [SerializeField] private Snap snap;
+    private Drag leftNeighbor;
+    private Drag rightNeighbor;
+    private Transform currentSnapPoint;
+    private int snapPointLoc;
 
     // Start is called before the first frame update
     void Start()
@@ -15,17 +17,20 @@ public class Neighbor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        left = snap.snapOccupancy[snap.snapPoints[1]];
+        currentSnapPoint = snap.currentSnapPoint[snap.draggableObj[0]];
+        snapPointLoc = snap.snapPoints.IndexOf(currentSnapPoint);
+        Debug.Log(snapPointLoc);
+    }
 
-        if(left == snap.draggableObj[1])
-        {
-            Debug.Log("1");
-        }
-        else
-        {
-            Debug.Log("0");
-        }
+    private void FindLeftNeighbor()
+    {
+
+    }
+
+    private void FindRightNeighbor()
+    {
+
     }
 }

@@ -11,6 +11,7 @@ public class Snap : MonoBehaviour
     public float snapRange = 1f;
 
     public Dictionary<Transform, Drag> snapOccupancy = new Dictionary<Transform, Drag>();
+    public Dictionary<Drag, Transform> currentSnapPoint = new Dictionary<Drag, Transform>();
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class Snap : MonoBehaviour
 
         foreach (Drag drag in draggableObj)
         {
+            currentSnapPoint[drag] = null;
             drag.dragEndedCallback = OnDragEnded;
         }
     }
@@ -47,10 +49,13 @@ public class Snap : MonoBehaviour
                 Drag other = snapOccupancy[closestSnapPoint];
                 other.transform.position = drag.spriteDragStartPos;
                 snapOccupancy[closestSnapPoint] = drag;
+                currentSnapPoint[drag] = closestSnapPoint;
+                currentSnapPoint[other] = null;
             }
             else
             {
                 snapOccupancy[closestSnapPoint] = drag;
+                currentSnapPoint[drag] = closestSnapPoint;
             }
 
             drag.transform.localPosition = closestSnapPoint.localPosition;
@@ -62,6 +67,7 @@ public class Snap : MonoBehaviour
                 if (snapOccupancy[key] == drag)
                     snapOccupancy[key] = null;
             }
+            currentSnapPoint[drag] = null;
         }
     }
 }
