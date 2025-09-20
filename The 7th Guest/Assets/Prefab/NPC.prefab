@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4697666272303055442}
   - component: {fileID: 4202929829052299132}
   - component: {fileID: 2180136559651000494}
+  - component: {fileID: 4591789989671304467}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5283019, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,3 +144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b1aed93251f1e488979b64eee01a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteDragStartPos: {x: 0, y: 0, z: 0}
+--- !u!114 &4591789989671304467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786309983642204241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdaa6c8f0c53024fb51149e507ac0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snap: {fileID: 0}

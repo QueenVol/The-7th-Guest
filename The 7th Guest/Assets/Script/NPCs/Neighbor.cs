@@ -5,6 +5,7 @@ using UnityEngine;
 public class Neighbor : MonoBehaviour
 {
     [SerializeField] private Snap snap;
+    [SerializeField] private Drag self;
     private Drag leftNeighbor;
     private Drag rightNeighbor;
     private Transform currentSnapPoint;
@@ -21,7 +22,8 @@ public class Neighbor : MonoBehaviour
 
     private void SelfPos()
     {
-        currentSnapPoint = snap.currentSnapPoint[snap.draggableObj[0]];
+        currentSnapPoint = snap.currentSnapPoint[self];
+        Debug.Log(currentSnapPoint);
         snapPointLoc = snap.snapPoints.IndexOf(currentSnapPoint);
     }
 
