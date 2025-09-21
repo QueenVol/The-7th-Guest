@@ -13,6 +13,8 @@ public class Neighbor : MonoBehaviour
     private int leftSnapPoint;
     private int rightSnapPoint;
 
+    public float satisfication;
+
     private void Update()
     {
         SelfPos();

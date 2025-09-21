@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class GamaManager : MonoBehaviour
 {
-    [SerializeField] private GameObject theMansion;
-    [SerializeField] private GameObject livingRoom;
-
-    private void Start()
-    {
-        
-    }
+    public static event Action OnCheck;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            theMansion.SetActive(false);
-            livingRoom.SetActive(true);
+            if (OnCheck != null)
+            {
+                OnCheck.Invoke();
+            }
         }
     }
 }

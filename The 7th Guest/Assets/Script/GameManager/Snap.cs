@@ -80,11 +80,13 @@ public class Snap : MonoBehaviour
             if (currentSnapPoint.TryGetValue(drag, out oldPoint) && oldPoint != null)
             {
                 if (snapOccupancy.ContainsKey(oldPoint) && snapOccupancy[oldPoint] == drag)
+                {
                     snapOccupancy[oldPoint] = null;
+                }
                 currentSnapPoint[drag] = null;
             }
 
-            ReturnToStart(drag);
+            //ReturnToStart(drag);
         }
     }
 
