@@ -23,7 +23,7 @@ public class Neighbor : MonoBehaviour
     private void SelfPos()
     {
         currentSnapPoint = snap.currentSnapPoint[self];
-        Debug.Log(currentSnapPoint);
+        //Debug.Log(currentSnapPoint);
         snapPointLoc = snap.snapPoints.IndexOf(currentSnapPoint);
     }
 
@@ -34,7 +34,7 @@ public class Neighbor : MonoBehaviour
         {
             leftSnapPoint = 0;
         }
-        Debug.Log(leftSnapPoint);
+        //Debug.Log(leftSnapPoint);
         leftNeighbor = snap.snapOccupancy[snap.snapPoints[leftSnapPoint]];
     }
 
@@ -45,7 +45,7 @@ public class Neighbor : MonoBehaviour
         {
             rightSnapPoint = snap.snapPoints.Count - 1;
         }
-        Debug.Log(rightSnapPoint);
+        //Debug.Log(rightSnapPoint);
         rightNeighbor = snap.snapOccupancy[snap.snapPoints[rightSnapPoint]];
     }
 }
