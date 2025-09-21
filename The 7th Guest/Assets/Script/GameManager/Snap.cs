@@ -15,27 +15,36 @@ public class Snap : MonoBehaviour
 
     private void Start()
     {
+        snapOccupancy.Clear();
         foreach (Transform snap in snapPoints)
         {
-            snapOccupancy[snap] = null; 
+            if (!snapOccupancy.ContainsKey(snap))
+            {
+                snapOccupancy[snap] = null;
+            }
         }
 
+        currentSnapPoint.Clear();
         foreach (Drag drag in draggableObj)
         {
-            currentSnapPoint[drag] = null;
+            if (!currentSnapPoint.ContainsKey(drag))
+            {
+                currentSnapPoint[drag] = null;
+            }
+
             drag.dragEndedCallback = OnDragEnded;
         }
     }
 
     private void OnDragEnded(Drag drag)
     {
-        float closestDistance = -1;
+        float closestDistance = float.MaxValue;
         Transform closestSnapPoint = null;
 
         foreach(Transform snapPoint in snapPoints)
         {
-            float currentDistance = Vector2.Distance(drag.transform.localPosition, snapPoint.localPosition);
-            if(closestSnapPoint == null ||  currentDistance < closestDistance)
+            float currentDistance = Vector2.Distance(drag.transform.position, snapPoint.position);
+            if(closestSnapPoint == null || currentDistance < closestDistance)
             {
                 closestSnapPoint = snapPoint;
                 closestDistance = currentDistance;
@@ -44,30 +53,43 @@ public class Snap : MonoBehaviour
 
         if(closestSnapPoint != null && closestDistance <= snapRange)
         {
-            if (snapOccupancy[closestSnapPoint] != null)
+            Drag occupant = null;
+            snapOccupancy.TryGetValue(closestSnapPoint, out occupant);
+
+            if (occupant != null)
             {
-                Drag other = snapOccupancy[closestSnapPoint];
-                other.transform.position = drag.spriteDragStartPos;
-                snapOccupancy[closestSnapPoint] = drag;
-                currentSnapPoint[drag] = closestSnapPoint;
-                currentSnapPoint[other] = null;
-            }
-            else
-            {
-                snapOccupancy[closestSnapPoint] = drag;
-                currentSnapPoint[drag] = closestSnapPoint;
+                ReturnToStart(drag);
+                return;
             }
 
-            drag.transform.localPosition = closestSnapPoint.localPosition;
+            Transform oldPoint;
+            if (currentSnapPoint.TryGetValue(drag, out oldPoint) && oldPoint != null)
+            {
+                if (snapOccupancy.ContainsKey(oldPoint) && snapOccupancy[oldPoint] == drag)
+                    snapOccupancy[oldPoint] = null;
+            }
+
+            snapOccupancy[closestSnapPoint] = drag;
+            currentSnapPoint[drag] = closestSnapPoint;
+
+            drag.transform.position = closestSnapPoint.position;
         }
         else
         {
-            foreach (var key in snapOccupancy.Keys)
+            Transform oldPoint;
+            if (currentSnapPoint.TryGetValue(drag, out oldPoint) && oldPoint != null)
             {
-                if (snapOccupancy[key] == drag)
-                    snapOccupancy[key] = null;
+                if (snapOccupancy.ContainsKey(oldPoint) && snapOccupancy[oldPoint] == drag)
+                    snapOccupancy[oldPoint] = null;
+                currentSnapPoint[drag] = null;
             }
-            currentSnapPoint[drag] = null;
+
+            ReturnToStart(drag);
         }
+    }
+
+    private void ReturnToStart(Drag drag)
+    {
+        drag.transform.position = drag.spriteDragStartPos;
     }
 }
