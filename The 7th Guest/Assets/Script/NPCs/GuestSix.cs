@@ -31,15 +31,18 @@ public class GuestSix : MonoBehaviour
     {
         if (neighbor.leftNeighbor != null && neighbor.rightNeighbor != null)
         {
-            neighbor.satisfication += 0.1f;
+            neighbor.satisfication += 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         else
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         if (neighbor.leftNeighbor == hatedPerson || neighbor.rightNeighbor == hatedPerson)
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         Debug.Log("guestsix " + neighbor.satisfication);
     }

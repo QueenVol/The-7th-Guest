@@ -29,11 +29,13 @@ public class Host : MonoBehaviour
     {
         if (snap.currentSnapPoint[self] == snap.snapPoints[0] || snap.currentSnapPoint[self] == snap.snapPoints[4])
         {
-            neighbor.satisfication += 0.1f;
+            neighbor.satisfication += 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         else
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         Debug.Log("host " + neighbor.satisfication);
     }

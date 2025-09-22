@@ -16,6 +16,8 @@ public class Drag : MonoBehaviour
 
     private Vector3 pos;
 
+    public bool canDrag = false;
+
     private void Update()
     {
         pos = transform.position;
@@ -25,6 +27,7 @@ public class Drag : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!canDrag) return;
         isDrag = true;
         mouseDragStartPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         spriteDragStartPos = transform.localPosition;

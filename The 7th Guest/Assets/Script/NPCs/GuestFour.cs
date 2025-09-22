@@ -29,11 +29,13 @@ public class GuestFour : MonoBehaviour
     {
         if (snap.currentSnapPoint[self] == snap.snapPoints[2] || snap.currentSnapPoint[self] == snap.snapPoints[6])
         {
-            neighbor.satisfication += 0.1f;
+            neighbor.satisfication += 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         else
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         Debug.Log("guestfour " + neighbor.satisfication);
     }

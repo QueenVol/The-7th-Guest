@@ -30,11 +30,13 @@ public class Butler : MonoBehaviour
     {
         if (snap.currentSnapPoint[self] != null)
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         else
         {
-            neighbor.satisfication += 0.1f;
+            neighbor.satisfication += 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         Debug.Log("butler " + neighbor.satisfication);
     }

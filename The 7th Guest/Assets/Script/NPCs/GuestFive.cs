@@ -33,15 +33,18 @@ public class GuestFive : MonoBehaviour
     {
         if (neighbor.leftNeighbor == preferedPersonOne || neighbor.rightNeighbor == preferedPersonOne || neighbor.leftNeighbor == preferedPersonTwo || neighbor.rightNeighbor == preferedPersonTwo)
         {
-            neighbor.satisfication += 0.1f;
+            neighbor.satisfication += 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         else
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         if (neighbor.leftNeighbor == hatedPerson || neighbor.rightNeighbor == hatedPerson)
         {
-            neighbor.satisfication -= 0.1f;
+            neighbor.satisfication -= 0.2f;
+            neighbor.satisfication = Mathf.Clamp(neighbor.satisfication, 0f, 1f);
         }
         Debug.Log("guestfive " + neighbor.satisfication);
     }

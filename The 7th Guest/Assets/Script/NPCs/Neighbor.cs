@@ -24,6 +24,14 @@ public class Neighbor : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+        satisfication = 0.5f;
+
+        if (satisBar != null)
+        {
+            satisBar.minValue = 0f;
+            satisBar.maxValue = 1f;
+            satisBar.value = satisfication;
+        }
     }
 
     private void Update()
@@ -32,6 +40,7 @@ public class Neighbor : MonoBehaviour
         FindLeftNeighbor();
         FindRightNeighbor();
         SatiSlider();
+        satisfication = Mathf.Clamp(satisfication, 0f, 1f);
     }
 
     private void SelfPos()
