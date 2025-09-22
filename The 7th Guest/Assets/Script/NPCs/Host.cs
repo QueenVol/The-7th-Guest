@@ -10,9 +10,6 @@ public class Host : MonoBehaviour
     [SerializeField] private Snap snap;
     [SerializeField] private Drag self;
 
-    [SerializeField] private Transform masterSeatOne;
-    [SerializeField] private Transform masterSeatTwo;
-
     private void Start()
     {
         neighbor.satisfication = 0.5f;

@@ -158,3 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snap: {fileID: 0}
+  self: {fileID: 0}
+  leftNeighbor: {fileID: 0}
+  rightNeighbor: {fileID: 0}
+  satisfication: 0
+  satisBar: {fileID: 0}
+  offset: {x: 0, y: 0.6, z: 0}

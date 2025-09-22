@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Neighbor : MonoBehaviour
 {
     [SerializeField] private Snap snap;
     [SerializeField] private Drag self;
-    private Drag leftNeighbor;
-    private Drag rightNeighbor;
+    public Drag leftNeighbor;
+    public Drag rightNeighbor;
     private Transform currentSnapPoint;
     private int snapPointLoc;
     private int leftSnapPoint;
@@ -15,11 +16,22 @@ public class Neighbor : MonoBehaviour
 
     public float satisfication;
 
+    [SerializeField] private Slider satisBar;
+    [SerializeField] private Vector3 offset = new Vector3(0, 0.6f, 0);
+
+    private Camera cam;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
     private void Update()
     {
         SelfPos();
         FindLeftNeighbor();
         FindRightNeighbor();
+        SatiSlider();
     }
 
     private void SelfPos()
@@ -49,5 +61,17 @@ public class Neighbor : MonoBehaviour
         }
         //Debug.Log(rightSnapPoint);
         rightNeighbor = snap.snapOccupancy[snap.snapPoints[rightSnapPoint]];
+    }
+
+    private void SatiSlider()
+    {
+        if (satisBar != null)
+        {
+            satisBar.value = satisfication;
+
+            Vector3 screenPos = cam.WorldToScreenPoint(transform.position + offset);
+
+            satisBar.transform.position = screenPos;
+        }
     }
 }
